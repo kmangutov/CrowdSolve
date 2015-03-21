@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.kmangutov.crowdsolve.views.AnalyzeFragment;
 import com.kmangutov.crowdsolve.views.LoginFragment;
 import com.kmangutov.crowdsolve.views.PostFragment;
 import com.kmangutov.crowdsolve.views.QuestionFragment;
@@ -15,7 +16,7 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
 
     QuestionFragment mQuestionFragment;
     PostFragment mPostFragment;
-    LoginFragment mLoginFragmentTwo;
+    AnalyzeFragment mAnalyzeFragment;
 
     public MyPagerAdapter(FragmentManager manager) {
 
@@ -41,8 +42,8 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
                     return (mPostFragment = new PostFragment());
 
             case 2:
-                if(mLoginFragmentTwo == null)
-                    return (mLoginFragmentTwo = new LoginFragment());
+                if(mAnalyzeFragment == null)
+                    return (mAnalyzeFragment = new AnalyzeFragment());
 
             default: return null;
         }
