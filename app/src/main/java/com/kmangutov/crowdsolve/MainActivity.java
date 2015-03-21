@@ -35,6 +35,8 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
 
+//        getActionBar().setTitle("CrowdSolve");
+
         mMyPagerAdapter = new MyPagerAdapter(this.getSupportFragmentManager());
         mPager.setAdapter(mMyPagerAdapter);
         mTabs.setViewPager(mPager);
