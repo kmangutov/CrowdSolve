@@ -27,6 +27,8 @@ public class AnalyzeFragment extends Fragment {
     @InjectView(R.id.chart1)
     PieChart mChart;
 
+    Typeface mTypeFace;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -38,6 +40,8 @@ public class AnalyzeFragment extends Fragment {
         mChart.setCenterText("Question");
         mChart.setRotationEnabled(false);
 
+/*        mTypeFace = Typeface.createFromAsset(getActivity().getAssets(),
+                "fonts/ostrich-regular.ttf");*/
 
         fuck();
 
@@ -63,6 +67,8 @@ public class AnalyzeFragment extends Fragment {
         data.setColors(ColorTemplate.COLORFUL_COLORS);
 
         PieData plotData = new PieData(xVals, data);
+        plotData.setValueTypeface(mTypeFace);
+
 
         mChart.setData(plotData);
         mChart.invalidate();
