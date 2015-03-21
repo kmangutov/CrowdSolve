@@ -4,27 +4,45 @@
     android:layout_height="wrap_content"
     android:padding="20dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Should I go to class today?"
-        android:id="@+id/textViewQuestion"
-        android:layout_gravity="center_horizontal"
-        android:paddingBottom="10dp"/>
-
-    <Button
+    <Space
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Yes"
-        android:id="@+id/buttonOptionOne"
-        android:layout_gravity="center_horizontal" />
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
-    <Button
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="No"
-        android:id="@+id/buttonOptionTwo"
-        android:layout_gravity="center_horizontal" />
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Should I go to class today?"
+            android:id="@+id/textViewQuestion"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="10dp"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Yes"
+            android:id="@+id/buttonOptionOne"
+            android:layout_gravity="center_horizontal" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No"
+            android:id="@+id/buttonOptionTwo"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
 </LinearLayout>

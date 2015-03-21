@@ -99,7 +99,7 @@ public class PostFragment extends Fragment {
         }
 
         String str = mEditTextAddOption.getText().toString();
-        mTextViewOptions.append("\n" + str);
+        mTextViewOptions.append("\n - " + str);
 
         count++;
         setCountTitle();
