@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.kmangutov.crowdsolve.views.LoginFragment;
+import com.kmangutov.crowdsolve.views.PostFragment;
 import com.kmangutov.crowdsolve.views.QuestionFragment;
 
 /**
@@ -13,7 +14,7 @@ import com.kmangutov.crowdsolve.views.QuestionFragment;
 public class MyPagerAdapter extends FragmentPagerAdapter {
 
     QuestionFragment mQuestionFragment;
-    LoginFragment mLoginFragmentOne;
+    PostFragment mPostFragment;
     LoginFragment mLoginFragmentTwo;
 
     public MyPagerAdapter(FragmentManager manager) {
@@ -36,8 +37,8 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
                     return (mQuestionFragment = new QuestionFragment());
 
             case 1:
-                if(mLoginFragmentOne == null)
-                    return (mLoginFragmentOne = new LoginFragment());
+                if(mPostFragment == null)
+                    return (mPostFragment = new PostFragment());
 
             case 2:
                 if(mLoginFragmentTwo == null)
@@ -50,6 +51,17 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
 
-        return "fager " + position;
+        switch(position) {
+            case 0:
+                return "Answer";
+
+            case 1:
+                return "Ask";
+
+            case 2:
+                return "Analyze";
+
+            default: return "Tab " + position;
+        }
     }
 }
