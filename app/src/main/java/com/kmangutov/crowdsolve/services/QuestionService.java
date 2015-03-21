@@ -1,6 +1,7 @@
 package com.kmangutov.crowdsolve.services;
 
 import com.kmangutov.crowdsolve.models.Question;
+import com.kmangutov.crowdsolve.models.ServerResponse;
 import com.kmangutov.crowdsolve.models.User;
 
 import java.util.List;
@@ -19,7 +20,9 @@ import rx.Observable;
 public class QuestionService {
 
     //private static final String QUESTION_SERVER_URL = "http://localhost:3000/api";
-    private static final String QUESTION_SERVER_URL = "http://10.0.3.2:3000/api";
+    //private static final String QUESTION_SERVER_URL = "http://10.0.3.2:3000/api";
+
+    private static final String QUESTION_SERVER_URL = "http://97e526f.ngrok.com";
 
     public QuestionsApi mApi;
 
@@ -50,6 +53,9 @@ public class QuestionService {
         public Observable<Question> getQuestion(@Path("id") int id);
 
         @POST("/users")
-        public void register(@Body User user);
+        public Observable<ServerResponse> register(@Body User user);
+
+        @POST("/log-in")
+        public Observable<ServerResponse> login(@Body User user);
     }
 }
