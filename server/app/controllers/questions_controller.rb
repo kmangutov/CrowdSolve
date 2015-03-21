@@ -3,6 +3,17 @@ class QuestionsController < ApplicationController
 	end
 
 	def show
+		# Get /questions
+		# params: id - user id
+		cur_user = User.find(params[:id])
+		
+		unless cur_user != nil
+			return render json: "error"
+		end
+
+		n_qu = cur_user.questions
+		#@q = Question.limit(1).where("id not in (?)", n_qu.map(&:id))
+		@q = Question.first
 	end
 
 	def new
@@ -12,14 +23,21 @@ class QuestionsController < ApplicationController
 	end
 
 	def create
-		@question = Question.new(question_params)
+		# Post /questions
+		# params: user_id - user id
 
-		if @question.save
-			redirect_to "/"
-		else
-			redirect_to :back
+		@user = User.find(question_params[:user_id])
+		@q = @user.questions.create(question_params)
 
-		end
+		# Answer stuff
+		@answer = @q.answers.create()
+		@user.answers << @answer
+
+		# Copy the answer
+		@answer.update_attribute(:answer, nil)
+
+		redirect_to "/"
+
 	end
 
 	def update
@@ -30,6 +48,6 @@ class QuestionsController < ApplicationController
 
 	private
 	def question_params
-      params.require(:question).permit(:question, :geo)
+      params.require(:question).permit(:question, :geo, :user_id)
     end
 end

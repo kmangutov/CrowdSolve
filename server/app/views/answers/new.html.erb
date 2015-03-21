@@ -1,0 +1,12 @@
+<h1>New Answers</h1>
+
+<%=form_for Answer.new do |f| %>
+	<%=f.label :user_id %>
+	<%=f.number_field :user_id %> 
+	<%=f.label :question_id %>
+	<%=f.number_field :question_id %> 
+	<%=f.label :answer %>
+	<%=f.text_field :answer%> 
+	<%=f.submit "Create Answer" %>
+<%end%>
+

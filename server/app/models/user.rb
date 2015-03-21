@@ -8,4 +8,7 @@ class User < ActiveRecord::Base
 	# Questions
 	has_many :questions
 
+	#Answers
+	has_many :answers
+
 end
