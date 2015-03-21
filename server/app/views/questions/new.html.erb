@@ -1,0 +1,14 @@
+<h1>New question</h1>
+
+<h1>Generate Question</h1>
+
+<%=form_for Question.new do |f| %>
+	<%=f.label :options %>
+	<%=f.text_field :options %> 
+	<%=f.label :question %>
+	<%=f.text_field :question %> 
+	<%=f.geo :geo %>
+	<%=f.text_field :geo %>
+	<%=f.submit "Create Question" %>
+<%end%>
+

@@ -5,4 +5,7 @@ class User < ActiveRecord::Base
 	# We need a password hash
 	has_secure_password
 
+	# Questions
+	has_many :questions
+
 end
