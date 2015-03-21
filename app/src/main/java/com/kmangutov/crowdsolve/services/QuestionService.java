@@ -1,12 +1,15 @@
 package com.kmangutov.crowdsolve.services;
 
 import com.kmangutov.crowdsolve.models.Question;
+import com.kmangutov.crowdsolve.models.User;
 
 import java.util.List;
 
 import retrofit.RequestInterceptor;
 import retrofit.RestAdapter;
+import retrofit.http.Body;
 import retrofit.http.GET;
+import retrofit.http.POST;
 import retrofit.http.Path;
 import rx.Observable;
 
@@ -45,5 +48,8 @@ public class QuestionService {
 
         @GET("/question/{id}")
         public Observable<Question> getQuestion(@Path("id") int id);
+
+        @POST("/users")
+        public void register(@Body User user);
     }
 }

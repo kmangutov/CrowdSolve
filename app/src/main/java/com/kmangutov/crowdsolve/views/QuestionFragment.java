@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.kmangutov.crowdsolve.R;
 import com.kmangutov.crowdsolve.models.Question;
 import com.kmangutov.crowdsolve.services.QuestionService;

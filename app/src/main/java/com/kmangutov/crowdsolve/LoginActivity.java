@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -28,6 +29,9 @@ public class LoginActivity extends Activity {
     @InjectView(R.id.textViewLoginTitle)
     TextView mTextViewLoginTitle;
 
+    @InjectView(R.id.buttonGo)
+    Button mButtonGo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,20 +40,19 @@ public class LoginActivity extends Activity {
         ButterKnife.inject(this);
 
 
-
         YoYo.with(Techniques.FadeInLeft)
-                .duration(700)
-                .playOn(mTextViewLoginTitle);
-
-
-        YoYo.with(Techniques.FadeInLeft)
-                .duration(700)
+                .duration(2000)
                 .playOn(mEditTextEmail);
 
 
         YoYo.with(Techniques.FadeInLeft)
-                .duration(700)
+                .duration(2500)
                 .playOn(mEditTextPassword);
+
+
+        YoYo.with(Techniques.FadeInLeft)
+                .duration(3000)
+                .playOn(mButtonGo);
     }
 
     @OnClick(R.id.buttonGo)
