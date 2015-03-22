@@ -1,6 +1,6 @@
 # CrowdSolve
 
-## Mobile crowd-sourced polling platform
+### Mobile crowd-sourced polling platform
 
 Android development project demonstrating user input, intefacing with an API backend, and incorporating open source third party libraries.
 
