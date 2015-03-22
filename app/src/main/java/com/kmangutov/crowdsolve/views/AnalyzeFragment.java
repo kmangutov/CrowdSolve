@@ -13,6 +13,7 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.kmangutov.crowdsolve.R;
+import com.kmangutov.crowdsolve.models.Question;
 
 import java.util.ArrayList;
 
@@ -27,8 +28,6 @@ public class AnalyzeFragment extends Fragment {
     @InjectView(R.id.chart1)
     PieChart mChart;
 
-    Typeface mTypeFace;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -36,19 +35,23 @@ public class AnalyzeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_analyze, container, false);
         ButterKnife.inject(this, view);
 
-        mChart.setHoleRadius(60f);
-        mChart.setCenterText("Question");
-        mChart.setRotationEnabled(false);
+        Question q = new Question();
+        q.question = "Should I get Chinese or Mexican food?";
+        q.options = new ArrayList<String>();
+        q.options.add("Chinese");
+        q.options.add("Mexican");
 
-/*        mTypeFace = Typeface.createFromAsset(getActivity().getAssets(),
-                "fonts/ostrich-regular.ttf");*/
-
-        fuck();
+        dummyChart(q);
 
         return view;
     }
 
-    protected void fuck() {
+    protected void dummyChart(Question q) {
+
+        mChart.setHoleRadius(60f);
+        mChart.setCenterText(q.question);
+        mChart.setDescription("Results");
+        mChart.setRotationEnabled(false);
 
         ArrayList<Entry> q1 = new ArrayList<Entry>();
 
@@ -58,17 +61,15 @@ public class AnalyzeFragment extends Fragment {
         q1.add(a);
         q1.add(b);
 
-        PieDataSet data = new PieDataSet(q1, "Question 1");
+        PieDataSet data = new PieDataSet(q1, "");
 
         ArrayList<String> xVals = new ArrayList<String>();
-        xVals.add("Answer one");
-        xVals.add("Answer two");
+        for(String s : q.options)
+            xVals.add(s);
 
         data.setColors(ColorTemplate.COLORFUL_COLORS);
 
         PieData plotData = new PieData(xVals, data);
-        plotData.setValueTypeface(mTypeFace);
-
 
         mChart.setData(plotData);
         mChart.invalidate();

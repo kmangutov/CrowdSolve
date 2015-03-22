@@ -50,7 +50,7 @@ public class QuestionFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_question, container, false);
         ButterKnife.inject(this, view);
 
-        mQuestionService = new QuestionService();
+        mQuestionService = QuestionService.getInstance();
         loadQuestion(mQuestionId);
 
         return view;
@@ -96,7 +96,7 @@ public class QuestionFragment extends Fragment {
 
         Log.d(LOG_ID, "in loadQuestion(Question q)");
         mTextViewQuestion.setText(question.question);
-        mButtonOptionOne.setText(question.answers.get(0));
-        mButtonOptionTwo.setText(question.answers.get(1));
+        mButtonOptionOne.setText(question.options.get(0));
+        mButtonOptionTwo.setText(question.options.get(1));
     }
 }

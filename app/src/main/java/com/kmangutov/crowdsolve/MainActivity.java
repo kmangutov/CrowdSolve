@@ -13,6 +13,8 @@ import android.view.View;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.kmangutov.crowdsolve.adapters.MyPagerAdapter;
+import com.kmangutov.crowdsolve.singletons.LoggedInUser;
+
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -29,6 +31,8 @@ public class MainActivity extends ActionBarActivity {
 
     MyPagerAdapter mMyPagerAdapter;
 
+    LoggedInUser mLoggedInUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,21 +40,15 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
 
-        String email = getIntent().getStringExtra("email");
-        System.out.println("email: " + email);
-
         getSupportActionBar().setTitle("CrowdSolve");
         getSupportActionBar().setBackgroundDrawable(
                 new ColorDrawable(Color.parseColor("#60B9CE")));
 
-        mMyPagerAdapter = new MyPagerAdapter(this.getSupportFragmentManager(), email);
+        mMyPagerAdapter = new MyPagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(mMyPagerAdapter);
         mTabs.setViewPager(mPager);
 
-        //mTabs.setUnderlineColorResource(R.color.color_black);
         mTabs.setIndicatorColorResource(R.color.color_foreground);
-        //mTabs.setTextColorResource(R.color.color_white);
-        //mTabs.setTabBackground(R.color.color_black);
         mTabs.setBackgroundColor(Color.parseColor("#E0E0E0"));
     }
 

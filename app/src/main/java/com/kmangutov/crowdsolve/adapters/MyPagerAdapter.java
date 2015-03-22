@@ -5,7 +5,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.kmangutov.crowdsolve.views.AnalyzeFragment;
-import com.kmangutov.crowdsolve.views.LoginFragment;
 import com.kmangutov.crowdsolve.views.PostFragment;
 import com.kmangutov.crowdsolve.views.QuestionFragment;
 
@@ -14,16 +13,13 @@ import com.kmangutov.crowdsolve.views.QuestionFragment;
  */
 public class MyPagerAdapter extends FragmentPagerAdapter {
 
-    QuestionFragment mQuestionFragment;
-    PostFragment mPostFragment;
-    AnalyzeFragment mAnalyzeFragment;
+    protected QuestionFragment mQuestionFragment;
+    protected PostFragment mPostFragment;
+    protected AnalyzeFragment mAnalyzeFragment;
 
-    protected String email;
-
-    public MyPagerAdapter(FragmentManager manager, String email) {
+    public MyPagerAdapter(FragmentManager manager) {
 
         super(manager);
-        this.email = email;
     }
 
     @Override
@@ -41,11 +37,8 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
                     return (mQuestionFragment = new QuestionFragment());
 
             case 1:
-                if(mPostFragment == null) {
-                    mPostFragment = new PostFragment();
-                    System.out.println("mPostFragment set email called " + email);
-                    mPostFragment.setEmail(email);
-                }
+                if(mPostFragment == null)
+                    return (mPostFragment = new PostFragment());
 
             case 2:
                 if(mAnalyzeFragment == null)
