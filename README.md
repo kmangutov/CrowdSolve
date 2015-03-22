@@ -2,7 +2,7 @@
 
 ### Mobile crowd-sourced polling platform
 
-Android development project demonstrating user input, intefacing with an API backend, and incorporating open source third party libraries.
+Android development project demonstrating use of common user interface design patterns, communication with a RESTful API on the backend, and incorporating open source third party libraries.
 
 <img src="/screenshots/splash.jpg" height="25%" width="25%" align="">
 <img src="/screenshots/one.jpg" height="25%" width="25%" align=""><br>
