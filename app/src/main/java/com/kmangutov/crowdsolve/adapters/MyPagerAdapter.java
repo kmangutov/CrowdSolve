@@ -18,9 +18,12 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
     PostFragment mPostFragment;
     AnalyzeFragment mAnalyzeFragment;
 
-    public MyPagerAdapter(FragmentManager manager) {
+    protected String email;
+
+    public MyPagerAdapter(FragmentManager manager, String email) {
 
         super(manager);
+        this.email = email;
     }
 
     @Override
@@ -38,8 +41,11 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
                     return (mQuestionFragment = new QuestionFragment());
 
             case 1:
-                if(mPostFragment == null)
-                    return (mPostFragment = new PostFragment());
+                if(mPostFragment == null) {
+                    mPostFragment = new PostFragment();
+                    System.out.println("mPostFragment set email called " + email);
+                    mPostFragment.setEmail(email);
+                }
 
             case 2:
                 if(mAnalyzeFragment == null)

@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.kmangutov.crowdsolve.R;
 import com.kmangutov.crowdsolve.models.Question;
 import com.kmangutov.crowdsolve.services.QuestionService;
@@ -56,7 +58,7 @@ public class QuestionFragment extends Fragment {
 
     public void loadQuestion(int question) {
 
-        mQuestionService.mApi
+        /*mQuestionService.mApi
                 .getQuestion(question)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -75,7 +77,7 @@ public class QuestionFragment extends Fragment {
                     public void onNext(Question question) {
                         loadQuestion(question);
                     }
-                });
+                });*/
     }
 
     @OnClick(R.id.buttonOptionOne)
@@ -93,8 +95,8 @@ public class QuestionFragment extends Fragment {
     public void loadQuestion(Question question) {
 
         Log.d(LOG_ID, "in loadQuestion(Question q)");
-        mTextViewQuestion.setText(question.text);
-        mButtonOptionOne.setText(question.options.get(0));
-        mButtonOptionTwo.setText(question.options.get(1));
+        mTextViewQuestion.setText(question.question);
+        mButtonOptionOne.setText(question.answers.get(0));
+        mButtonOptionTwo.setText(question.answers.get(1));
     }
 }
