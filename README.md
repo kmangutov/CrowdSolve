@@ -14,3 +14,8 @@ Third party libraries used
 * ButterKnife for view injection
 * Retrofit to interface with backend
 * PagerSlidingTabStrip (https://github.com/astuetz/PagerSlidingTabStrip)
+
+To do
+* Implement a 'points' system to incentivize answering of questions. Asking questions costs points
+* Incorporate Dagger for dependency injection
+* Complete backend for full functionality
