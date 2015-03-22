@@ -27,8 +27,7 @@ class AnswersController < ApplicationController
 		#copy the answer
 		@answer.update_attribute(:answer, answer_params[:answer])
 
-		redirect_to "/"
-
+		return render json: {"message" => "error"}
 	end
 
 	def update

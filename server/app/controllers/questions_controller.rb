@@ -1,4 +1,6 @@
 class QuestionsController < ApplicationController
+	skip_before_action :verify_authenticity_token
+
 	def index
 	end
 
@@ -8,7 +10,7 @@ class QuestionsController < ApplicationController
 		cur_user = User.find(params[:id])
 		
 		unless cur_user != nil
-			return render json: "error"
+			return redner json: {"message" => "error"}
 		end
 
 		n_qu = cur_user.questions
@@ -26,8 +28,23 @@ class QuestionsController < ApplicationController
 		# Post /questions
 		# params: user_id - user id
 
-		@user = User.find(question_params[:user_id])
-		@q = @user.questions.create(question_params)
+		@user = User.find_by(email: question_params[:email])
+		#params = {"answers" => question_params[:answers], "geo" => question_params[:geo], "question" => question_params[:question], "user_id" => @user.id}
+		@q = @user.questions.create()
+
+		# Give questions value
+		@q.update_attribute(:question, question_params[:question])
+		@q.update_attribute(:geo, question_params[:geo])
+
+		#@q.update_attribute(:answers, question_params[:answers].to_a)
+		#@q.update_attribute(:answers, question_params[:answers])
+		@q.answers = Array.new(4,"")
+		@q.update_attribute(answers[0], question_params[:answer0])
+		@q.update_attribute(answers[1], question_params[:answer1])
+		@q.update_attribute(answers[2], question_params[:answer2])
+		@q.update_attribute(answers[3], question_params[:answer3])
+		@q.save
+
 
 		# Answer stuff
 		@answer = @q.answers.create()
@@ -36,7 +53,7 @@ class QuestionsController < ApplicationController
 		# Copy the answer
 		@answer.update_attribute(:answer, nil)
 
-		redirect_to "/"
+		return render json: {"message" => "success"}
 
 	end
 
@@ -48,6 +65,6 @@ class QuestionsController < ApplicationController
 
 	private
 	def question_params
-      params.require(:question).permit(:question, :geo, :user_id)
+      params.require(:question).permit(:question, :geo, :email, :answer0, :answer1, :answer2, :answer3)
     end
 end

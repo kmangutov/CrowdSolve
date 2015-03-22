@@ -1,4 +1,6 @@
 class SessionController < ApplicationController
+	protect_from_forgery :except => :create
+
 	def new
 	end
 
@@ -6,15 +8,19 @@ class SessionController < ApplicationController
 		@user = User.find_by(email: params[:email])
 		if @user && @user.authenticate(params[:password])
 			session[:user_id] = @user.id
-			redirect_to '/'
+			return render json: {:message => "success"}
 		else 
-			redirect_to login_path
+			return render json: {:message => "fail"}
 		end
 	end
 
 	def destroy
 		session[:user_id] = nil
-		redirect_to "/"
+	end
+
+	def uid 
+		@user = User.find_by(email: params[:email])
+		return render json: {"id" => @user.id}
 	end
 
 end
