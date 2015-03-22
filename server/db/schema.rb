@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150322011650) do
+ActiveRecord::Schema.define(version: 20150322073016) do
 
   create_table "answers", force: true do |t|
     t.integer  "user_id"
@@ -26,8 +26,11 @@ ActiveRecord::Schema.define(version: 20150322011650) do
     t.text     "geo"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "answers"
     t.text     "user_id"
+    t.text     "answer0"
+    t.text     "answer1"
+    t.text     "answer2"
+    t.text     "answer3"
   end
 
   create_table "users", force: true do |t|
