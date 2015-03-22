@@ -63,6 +63,20 @@ class QuestionsController < ApplicationController
 	def destroy
 	end
 
+	def getQuestion
+		# get /getquestion
+		# params: user_id - user id
+		@user = User.find_by(email: question_params[:email])
+
+		# Select Question.question, Question.id, Question.answers from Questions 
+		# inner join Answers 
+		# on Questions.user_id=Answers.user_id 
+		# where Questions.user_id <> @user.id
+		Question.answers
+		Q - A_U
+
+	end
+
 	private
 	def question_params
       params.require(:question).permit(:question, :geo, :email, :answer0, :answer1, :answer2, :answer3)
