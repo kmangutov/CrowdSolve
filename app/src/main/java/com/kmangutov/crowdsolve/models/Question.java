@@ -1,5 +1,6 @@
 package com.kmangutov.crowdsolve.models;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -7,6 +8,7 @@ import java.util.List;
  */
 public class Question {
 
-    public String text;
-    public List<String> options;
+    public String question;
+    public HashMap<Integer, String> answers;
+    public String email;
 }

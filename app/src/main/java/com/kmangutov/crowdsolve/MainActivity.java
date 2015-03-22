@@ -36,11 +36,14 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
 
+        String email = getIntent().getStringExtra("email");
+        System.out.println("email: " + email);
+
         getSupportActionBar().setTitle("CrowdSolve");
         getSupportActionBar().setBackgroundDrawable(
                 new ColorDrawable(Color.parseColor("#60B9CE")));
 
-        mMyPagerAdapter = new MyPagerAdapter(this.getSupportFragmentManager());
+        mMyPagerAdapter = new MyPagerAdapter(this.getSupportFragmentManager(), email);
         mPager.setAdapter(mMyPagerAdapter);
         mTabs.setViewPager(mPager);
 

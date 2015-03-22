@@ -1,8 +1,10 @@
 package com.kmangutov.crowdsolve.services;
 
+import com.kmangutov.crowdsolve.models.IdWrapper;
 import com.kmangutov.crowdsolve.models.Question;
 import com.kmangutov.crowdsolve.models.ServerResponse;
 import com.kmangutov.crowdsolve.models.User;
+import com.kmangutov.crowdsolve.models.UserWrapper;
 
 import java.util.List;
 
@@ -46,16 +48,24 @@ public class QuestionService {
 
     public interface QuestionsApi {
 
-        @GET("/question")
+        @GET("/questions")
         public Observable<List<Question>> getQuestions();
 
-        @GET("/question/{id}")
+        @GET("/questions/{id}")
         public Observable<Question> getQuestion(@Path("id") int id);
 
+        @POST("/questions")
+        public Observable<ServerResponse> postQuestion(@Body Question question);
+
         @POST("/users")
-        public Observable<ServerResponse> register(@Body User user);
+        public Observable<ServerResponse> register(@Body UserWrapper user);
 
         @POST("/log-in")
         public Observable<ServerResponse> login(@Body User user);
+
+        @GET("/getuid")
+        public Observable<IdWrapper> getUid(@Body User user);
+
+        //@POST("/")
     }
 }

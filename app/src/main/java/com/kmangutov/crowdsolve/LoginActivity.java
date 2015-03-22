@@ -8,9 +8,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.kmangutov.crowdsolve.models.Question;
 import com.kmangutov.crowdsolve.models.ServerResponse;
 import com.kmangutov.crowdsolve.models.User;
+import com.kmangutov.crowdsolve.models.UserWrapper;
 import com.kmangutov.crowdsolve.services.QuestionService;
 
 import butterknife.ButterKnife;
@@ -37,6 +37,8 @@ public class LoginActivity extends Activity {
 
     QuestionService mQuestionService;
 
+    String email = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,13 +62,15 @@ public class LoginActivity extends Activity {
                 .playOn(mButtonGo);*/
     }
 
-    public User formUser() {
+    public UserWrapper formUser() {
 
         User u = new User(
                 mEditTextEmail.getText().toString(),
                 mEditTextPassword.getText().toString());
+        UserWrapper uw = new UserWrapper();
+        uw.user = u;
 
-        return u;
+        return uw;
     }
 
 
@@ -74,8 +78,14 @@ public class LoginActivity extends Activity {
     @OnClick(R.id.buttonLogin)
     public void onGo() {
 
+
+        email = mEditTextEmail.getText().toString();
+        User u = new User(
+                mEditTextEmail.getText().toString(),
+                mEditTextPassword.getText().toString());
+
         mQuestionService.mApi
-                .login(formUser())
+                .login(u)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ServerResponse>() {
@@ -105,6 +115,7 @@ public class LoginActivity extends Activity {
     @OnClick(R.id.buttonRegister)
     public void onRegister() {
 
+        email = mEditTextEmail.getText().toString();
         mQuestionService.mApi
                 .register(formUser())
                 .subscribeOn(Schedulers.io())
@@ -139,6 +150,7 @@ public class LoginActivity extends Activity {
     public void launchMain() {
 
         Intent myIntent = new Intent(this, MainActivity.class);
+        myIntent.putExtra("email", email);
         startActivity(myIntent);
     }
 }
