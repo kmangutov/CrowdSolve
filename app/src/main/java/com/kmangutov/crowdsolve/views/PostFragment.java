@@ -13,6 +13,7 @@ import com.kmangutov.crowdsolve.R;
 import com.kmangutov.crowdsolve.models.Question;
 import com.kmangutov.crowdsolve.models.ServerResponse;
 import com.kmangutov.crowdsolve.services.QuestionService;
+import com.kmangutov.crowdsolve.singletons.LoggedInUser;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -70,17 +71,12 @@ public class PostFragment extends Fragment {
         setCountTitle();
 
         setupAddHook();
-        mQuestionService = new QuestionService();
+        mQuestionService = QuestionService.getInstance();
 
         return view;
     }
 
-    String email;
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    //only enable awdd button if there is text in textfield
+    //only enable add button if there is text in textfield
     public void setupAddHook() {
 
         WidgetObservable.text(mEditTextAddOption)
@@ -108,16 +104,14 @@ public class PostFragment extends Fragment {
     List<String> options = new ArrayList<String>();
     public Question getQuestion() {
 
+        ArrayList<String> copy = new ArrayList<String>();
+        for(String s : options)
+            copy.add(s);
+        options = new ArrayList<String>();
+
         Question question = new Question();
         question.question = mEditTextTitle.getText().toString().replaceAll("\n", "");
-
-        HashMap<Integer, String> map = new HashMap<>();
-        for(int i = 0; i < options.size(); i++)
-            map.put(i, options.get(i).replaceAll("\n", ""));
-
-        question.answers = map;
-        options = new ArrayList<String>();
-        question.email = email;
+        question.options = copy;
 
         return question;
     }
@@ -143,6 +137,7 @@ public class PostFragment extends Fragment {
                     public void onNext(ServerResponse resp) {
 
                         System.out.println("response: " + resp.message);
+                        options = new ArrayList<String>();
                     }
                 });
     }

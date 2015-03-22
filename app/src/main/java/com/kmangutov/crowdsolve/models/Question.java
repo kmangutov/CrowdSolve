@@ -9,6 +9,5 @@ import java.util.List;
 public class Question {
 
     public String question;
-    public HashMap<Integer, String> answers;
-    public String email;
+    public List<String> options;
 }
